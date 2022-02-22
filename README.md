@@ -3,7 +3,8 @@ APIAstro --- estudiando transitos exoplanetarios en la web
 
 **Autor: Roy Van der Westhuizen (royvdw@uc.cl)**
 
-**Colaboradores**: Juan Pablo Sepúlveda
+**Colaboradores**: Juan Pablo Sepúlveda.
+
 **Advisors**: Andres Jordan (andres.jordan@uai.cl); Nestor Espinoza (nespinoza@stsci.edu).
 
 # Introduccion
