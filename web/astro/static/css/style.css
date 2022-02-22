@@ -1,0 +1,122 @@
+
+/*
+
+<img src="/static/images/eye.png" alt="Mountain View" style="height:3%;width:1.5%;left:83.5%;position:absolute;top:10.2%" >
+<img src="/static/images/eye.png" alt="Mountain View" style="height:3%;width:1.5%;left:79.5%;position:absolute;top:6%" >
+<img src="/static/images/eye.png" alt="Mountain View" style="height:3%;width:1.5%;left:36.3%;position:absolute;top:13.5%" >
+<img src="/static/images/eye.png" alt="Mountain View" style="height:3%;width:1.5%;left:82.3%;position:absolute;top:50.5%" >
+
+<img src="/static/images/eye.png" alt="Mountain View" style="height:3%;width:1.5%;left:28.3%;top:66.5%;position:absolute" >
+<img src="/static/images/eye.png" alt="Mountain View" style="height:3%;width:1.5%;left:82.3%;position:absolute;top:50.5%" >
+<img src="/static/images/eye.png" alt="Mountain View" style="height:2.5%;width:1.2%;left:93%;position:absolute;top:100%" >
+<img src="/static/images/eye.png" alt="Mountain View" style="height:2.5%;width:1.2%;left:55%;position:absolute;top:74%" >
+<img src="/static/images/eye.png" alt="Mountain View" style="height:2.5%;width:1.2%;left:51.3%;position:absolute;top:51.3%" >
+
+
+
+
+
+<!{{ form.radio_estrella|default('1.') }}>
+<!{{ form.radio_planeta|default('1.') }}>
+<!{{ form.distancia_orbital|default('1.') }}>
+<!{{ form.inclinacion_orbital|default('90.') }}>
+<!{{ mover_peak|default('0.') }}>
+
+<button  class = myButton style = "height:30px;left:36%;top:50%;position:absolute;z-index: +20">Volver Zoom</button>
+
+
+$('.button-reset').click(function() { plot1.resetZoom() });  principio ready document
+
+  $('.button-reset').click(function() { plot1.resetZoom() });  final ready document
+
+  cursor:{
+          zoom:true,
+          looseZoom: false,
+          //showTooltip:true,
+          //followMouse: true,
+        showTooltipOutsideZoom: false,
+          constrainOutsideZoom: false,
+         },
+
+<a  title="This is some text I want to display." style="top:70%;position:absolute;">This link has mouseover text.</a>
+
+
+if (  $('#Chart1').html()==''){
+  window.alert('resulta')
+}
+
+
+function prevent(val){
+  if (val==1){
+    val_prevent=1;
+   }
+  if(val_prevent==0){
+
+    window.alert('Debes subir el archivo primero');
+
+  }
+  if(val ==2){
+    val_prevent=1;
+  }
+}
+
+
+
+
+                    if allRows.index(line)==0:
+                        per_ = line
+                        per_ = per_.split('=')
+                        periodo = per_[1]
+                        periodo = periodo.replace('\n','')
+                        periodo = periodo.replace(' ','')
+                        for k in periodo:
+                            if k == '\n':
+                                periodo.remove(k)
+                            if k == ' ':
+                                periodo.remove(k)
+                        val = float(periodo)
+
+
+
+
+                        #per = per.replace(' ','')
+                        aux2 =0
+                        break;
+
+
+*/
+
+
+body {
+
+
+ font-family: Georgia, "Times New Roman",
+        Times, serif;
+  /*background-color:yellow ;*/
+  background-color: #1F1F2E
+    /*  background-image: url("/static/images/astro5.jpg");*/
+
+}
+
+
+    /*.jqplot-grid-canvas {
+        display: none;*/
+  //  }
+  .jqplot-title{
+    color: 'white';
+}
+.jqplot-xaxis{
+    color:'white';
+}
+.jqplot-yaxis{
+    color: 'white';
+}
+.jqplot-label{
+    color: 'white';
+}
+
+.jqplot-title {
+font-family: "Arial Black";
+font-size: 24px;
+color: lightblue;
+}

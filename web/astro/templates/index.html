@@ -1,0 +1,1012 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+    <title>Transitos planetarios</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link class="include" rel="stylesheet" type="text/css" href="static/css/jquery.jqplot.min.css"/>
+    <link type="text/css" rel="stylesheet" href="static/syntaxhighlighter/styles/shCoreDefault.min.css"/>
+    <link type="text/css" rel="stylesheet" href="static/syntaxhighlighter/styles/shThemejqPlot.min.css"/>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <script type="text/css" src="static/css/style.css">
+
+    <!--------------------------------------------->
+
+    <!--------------------------------------------->
+    <!--[if lt IE 9]>
+    <script language="javascript" type="text/javascript" src="./vendors/excanvas.js"></script><![endif]-->
+    <script class="include" type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script class="include" type="text/javascript" src="static/js/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="static/syntaxhighlighter/scripts/shCore.min.js"></script>
+    <script type="text/javascript" src="static/syntaxhighlighter/scripts/shBrushJScript.min.js"></script>
+    <script type="text/javascript" src="static/syntaxhighlighter/scripts/shBrushXml.min.js"></script>
+    <script class="include" language="javascript" type="text/javascript"
+            src="static/vendors/plugins/jqplot.json2.min.js"></script>
+
+    <script type="text/javascript" src="static/js/jquery.min.js"></script>
+      <script type="text/javascript" src="static/js/jquery.jqplot.js"></script>
+    <script type="text/javascript" src="static/plugins/jqplot.logAxisRenderer.min.js"></script>
+    <script type="text/javascript" src="static/plugins/jqplot.canvasTextRenderer.min.js"></script>
+    <script type="text/javascript" src="static/plugins/jqplot.canvasAxisLabelRenderer.min.js"></script>
+    <script type="text/javascript" src="static/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
+    <script type="text/javascript" src="static/plugins/jqplot.dateAxisRenderer.min.js"></script>
+    <script type="text/javascript" src="static/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+    <script type="text/javascript" src="static/plugins/jqplot.barRenderer.min.js"></script>
+
+
+        <script type="text/javascript" src="static/js/jqplot.mekkoAxisRenderer.js"></script>
+        <script type="text/javascript" src="static/js/jqplot.mekkoAxisRenderer.min.js"></script>
+        <script type="text/javascript" src="static/js/jqplot.mekkoRenderer.js"></script>
+        <script type="text/javascript" src="static/js/jqplot.mekkoRenderer.min.js"></script>
+
+
+    <script type="text/javascript" src="static/js/jquery.jqplot.js"></script>
+    <script type="text/javascript" src="static/vendors/plugins/jqplot.bubbleRenderer.js"></script>
+    <!     type="text/javascript" src="static/plugins/jqplot.logAxisRenderer.js"   >
+   <script type="text/javascript" src="static/plugins/jqplot.canvasTextRenderer.js"></script>
+    <script type="text/javascript" src="static/plugins/jqplot.canvasAxisLabelRenderer.js" ></script>
+   <script type="text/javascript" src="static/plugins/jqplot.canvasAxisTickRenderer.js"></script>
+   <script type="text/javascript" src="static/plugins/jqplot.dateAxisRenderer.js"></script>
+    <script type="text/javascript" src="static/plugins/jqplot.categoryAxisRenderer.js"></script>
+    <script type="text/javascript" src="static/plugins/jqplot.barRenderer.js"></script>
+
+
+
+    <link rel="stylesheet" type="text/css" hrf="static/css/jquery.jqplot.css"/>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+    <style type="text/css">
+    .popup {
+    	zoom:1.0;
+    	position:relative;
+    	text-decoration:none;
+    }
+    .popup span {
+      position:fixed;
+    	top:20%;
+    	left:50%;
+    	width:400px;
+    	padding:10px;
+    	border:3px solid rgb(0,114,250);
+    	border-radius:20px;
+    	left:-99em;
+    	z-index:990;
+      background-color: rgb(0,114,250);
+
+    }
+    .popup:hover {visibility:visible}
+    .popup:hover span {left:350px;}
+    * html .popup span {position:absolute;}
+
+    /*---------------------------
+    */
+    .popup2 {
+      zoom:1.0;
+      position:relative;
+      text-decoration:none;
+    }
+    .popup2 span {
+      position:fixed;
+      top:20%;
+      left:10%;
+      width:500px;
+      padding:7px;
+      border:3px solid rgb(0,114,250);
+      border-radius:20px;
+      left:-99em;
+      z-index:990;
+      background-color: rgb(0,114,250);
+
+    }
+    .popup2:hover {visibility:visible}
+    .popup2:hover span {left:50%;}
+    * html .popup2 span {position:absolute;}
+
+
+
+  .myButton {
+  	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  	box-shadow:inset 0px 1px 0px 0px #ffffff;
+  	background-color:transparent;
+  	-moz-border-radius:6px;
+  	-webkit-border-radius:6px;
+  	border-radius:6px;
+  	border:1px solid #dcdcdc;
+  	display:inline-block;
+  	cursor:pointer;
+    color:rgb(0,114,250);
+  	font-family:Arial;
+  	font-size:15px;
+  	font-weight:bold;
+  	padding:6px 24px;
+  	text-decoration:none;
+  	/*text-shadow:0px 1px 0px #ffffff;*/
+  }
+  .myButton:hover {
+  	background-color:transparent;
+  }
+  .myButton:active {
+  	position:relative;
+  	top:1px;
+  }
+.tablero{
+  background-color: #1F1F2E;
+}
+.Restit{
+    background-color: #1F1F2E;
+}
+.menu-bar {
+  width: 95%;
+  margin: 0px 0px 0px 0px;
+  padding: 1px 1px 1px 1px;
+  height: 1px;
+  line-height: 100%;
+  border-radius: 6px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  background: 'white';
+  background: linear-gradient(top,  #A9A9A9,  #7A7A7A);
+  -webkit-box-shadow: 1px 1px 1.5px #666666;
+    -moz-box-shadow: 2px 2px 3px #666666;
+      background: -ms-linear-gradient(top,  #A9A9A9,  #7A7A7A);
+      background: -webkit-gradient(linear, left top, left bottom, from(#A9A9A9), to('white'));
+  /*box-shadow: 2px 2px 3px #666666;
+  background: -moz-linear-gradient(top,  #A9A9A9,  #7A7A7A);*/
+  border: solid 2px #6D6D6D;
+
+}
+.resultados{
+  background-color: rgb(0,0,0,0);
+  -webkit-border-radius: 5px;
+  /*-moz-border-radius: 20px;*/
+  /*background: 'white';
+  background: linear-gradient(top,  #A9A9A9,  #7A7A7A);
+  -webkit-box-shadow: 1px 1px 1.5px #666666;
+    -moz-box-shadow: 2px 2px 3px #666666;
+      background: -ms-linear-gradient(top,  #A9A9A9,  #7A7A7A);
+      background: -webkit-gradient(linear, left top, left bottom, from(#A9A9A9), to('white'));*/
+
+}
+
+
+/*.boxed {
+  border: 0px solid  #1F1F2E; ;
+  background-color:  #1F1F2E;
+}
+*/
+    </style>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="upload-fields">
+    <form id="paramsform" action="" method=post enctype=multipart/form-data>
+        <input type=file name="file" class=myButton onClick="prevent(1);" style= "position: absolute;left:8%;top:50%; z-index: +20;height:20px">
+        <input id="uploadFile" type=submit onClick="prevent(2);" class=myButton value="Subir Curva de Luz" style= " height:33px;z-index: +20;position: absolute;left:8%;top:56%" >
+
+        <input type="hidden" id="radio_planeta" name="radio_planeta" value="{{ form.radio_planeta|default('1.') }}" />
+        <input type="hidden" id="radio_estrella" name="radio_estrella" value="{{ form.radio_estrella|default('1.') }}" />
+        <input type="hidden" id="distancia_orbital" name="distancia_orbital" value="{{ form.distancia_orbital|default('1.') }}" />
+        <input type="hidden" id="mover_peak" name="mover_peak" value="{{ mover_peak|default('0.') }}" />
+        <input type="hidden" id="inclinacion_orbital" name="inclinacion_orbital" value="{{ form.inclinacion_orbital|default('90.') }}" />
+
+    </form>
+    <br><br>
+</div>
+
+ <h3><a title="CURVA DE LUZ: Es una representación gráfica de la luz que nos llega de una estrella en el tiempo. Cuando el exoplaneta eclipsa la estrella, observamos una baja en la luz, evento llamado TRÁNSITO." class="popup"  style="top:10%;left:73%;position:absolute;color:rgb(0,114,250);"><i>Curvas de luz</i><span><img src="static/transit3.gif""></span></a> </h3>
+<h3><a class="popup2" class="tablero" title="COMO VES EN LA IMAGEN: Un Sistema Planetario esta conformado por una estrella y un planeta (puede ser más de uno) que gira alrededor de la estrella (orbita). Esta es una recreación en cámara rápida de un sistema planetario." style="height:0.1%;top:1%;left:16%;position:absolute;color:rgb(0,114,250);"><font size="8" color="White"><i>¡Descubre tu sistema planetario!</i> </font><span><img src="static/transit.gif"></span></a> </h3>
+
+
+<! Resultados >
+<h3><a  class="popup"  style="top:100%;left:90%;position:absolute;color:rgb(0,114,250);z-index: +100;"><i>Ver Resultados</i><span>
+
+  <font size="5" color="Black" style="left:20%;top:10%;z-index: +10;position:absolute"><i><u>Mis Resultados</u></i> </font>
+    <img src="/static/images/libreta.gif" alt="Mountain View" style="height:320px" >
+
+  <h7 style="top:23.2%;color:black;position:absolute;left:20%;background:rgba(0,0,0,0);width:89%;"><i>R_p / R_e =</i></h7>
+  <input class="resultados" style="width:13.5%;left:49%;top:24%;position:absolute;z-index: +10" type="text" id="R_p-R_e" value="0.0091"> <br/>
+
+  <h7 style="color:black;position:absolute;left:20%;top:33%;width:94%;">D_orbit / R_e = </h7>
+ <input class="resultados" style="width:13.5%;left:58%;top:34%;position:absolute;z-index: +10" type="text" id="a-R_e" value="214939.469">
+
+<h7 style="color:black;position:absolute;left:20%;width:93%;top:45%;">incl. <small>(grados sexag.)</small>=</h7>
+<input class="resultados" style="position:absolute;color:black;width:14%;left:65%;top:45%;z-index: +10" type="text" id="in" value="90">
+
+<h7 style="color:black;position:absolute; left:20%;width:42%;top:55%;">Período (días)= </h7>
+ <input class="resultados" style="position:absolute;width:14%;left:60%;top:56%;z-index: +10" type="text" id="P" value="365">
+
+<h12 style="color:black;position:absolute; left:19%;width:72%;top:72%">  <font size="2"> Nota: Estos son <u>TODOS</u> los resultados que se pueden obtener con solo una curva de luz. </font> </h12>
+</span></a> </h3>
+
+
+
+<!TITULOS>
+ <h2 title="VISION RELATIVA FRONTAL: Es tu sistema planetario visto de frente. Se dice que es relativo porque el gráfico se autoajustará para que la estrella tenga siempre el mismo tamaño. Este gráfico te muestra la DIFERENCIA de tamaño entre tu planeta y tu estrella, en correcta proporción, y cómo se mueve el planeta al variar la inclinación orbital, mirado de frente." style = "position:absolute;top:45.5%;left:35%;z-index: +10;"><font size="4" color="White"><i>Visión Relativa frontal</i></font></h2>
+ <h2 title = "VISION LATERAL: Es tu sistema planetario visto de lado, en que se aprecia la distancia a la que están tu planeta y tu estrella, PERO OJO: La distancia entre la estrella y el planeta es en realidad unas 20 VECES más grande de lo que se ve en este gráfico. Si la distancia Estrella-planeta fuera correctamente proporcional en este gráfico, ¡el planeta estaría la mayor parte del tiempo fuera de la pantalla!. Así que recuerda que se están viendo más cerca de lo que realmente están." style = "position:absolute;top:69.3%;left:7.5%;z-index: +1;"><font size="5" color="White"><i>Visión lateral. <small><small><small>OJO: Aquí la distancia Estrella-Planeta está distorcionada</small></small></small></i></font></h2>
+ <a  title=" Para partir debes seleccionar el archivo en tu computador que contenga los datos de una curva de luz(Paso 1) y luego subirlos(Paso 2). Luego, mueve las barras para cumplir el objetivo e irás viendo cómo cambia tu sistema planetario." style = "position:absolute;top:45%;left:16%;z-index: +20;"><font size="5" color="White"><i>Para Empezar:</i></font></a>
+<h3><a class=Restit title="El Residuo es la diferencia entre el modelo que estás aproximando (curva de luz naranja) y los datos reales (curva de luz en puntos celestes). ¡Tu meta es reducirlo lo más posible!. Tu gran desafío es que el Residuo valga cero en toda la gráfica, es decir, que sea complentamente plana en cero. ¡Suerte con eso!" style="left:75%;top:50%;position:absolute;z-index: +20;color:rgb(0,114,250);"><i>Residuos</i></a></h3>
+<h2 style = "position:absolute;top:47%;left:2.5%;z-index: +1;"><font size="4" color="White"><i>Paso 1:</i></font></h2>
+<h2 style = "position:absolute;top:53%;left:2.5%;z-index: +1;"><font size="4" color="White"><i>Paso 2:</i></font></h2>
+<h2 style = "position:absolute;top:59%;left:2.5%;z-index: +1;"><font size="4" color="White"><i>Paso 3:</i></font></h2>
+<h2 style = "position:absolute;top:58%;left:9%;z-index: +1;color:rgb(0,114,250)"><font size="4" ><i>¡Mueve   |</i></font></h2>
+<h2 style = "position:absolute;top:61%;left:8.7%;z-index: +1;color:rgb(0,114,250)"><font size="4"><i>Barras!   |</i></font></h2>
+<h2 id="advertencia" style = "position:absolute;top:20%;left:60%;z-index: +1;"><font size="4" color="White"><i> </i></font></h2>
+<h2 style = "position:absolute;top:24%;left:70%;z-index: +1;"><font size="2" color="White"><i>Aún no se han cargado los datos</i></font></h2>
+<h2 style = "position:absolute;top:100%;left:16%;z-index: +1;color:rgb(0,114,250)"><font size="2" ><i>Página diseñada por Roy Van Der Westhuizen (Licenciatura en astronomía,PUC), en colaboración con Juan Pablo Sepúlveda</i></font></h2>
+
+<h2 title="Este número es tu mejor (el más pequeño) residuo logrado hasta ahora." style = "position:absolute;top:61%;left:17%;z-index: +1;"><font size="3" color="White"><i>Tu mejor Residuo:</i></font></h2>
+<h3 id="demo" style="color:rgb(0,114,250);left:30%;top:62%;position:absolute"> </h3>
+
+<h2 title="Este número represente el total de tu Residuo. Si es cero, significa que tu modelo y
+datos son perfectamente iguales. Te ayudará cuando no sea evidente mirar el
+gráfico de residuo para aminorarlo más todavía. Se te interesa saber, este número se calcula como la raíz cuadrada de la suma, del cuadrado,  de la diferencia de los datos con el ajuste." style = "position:absolute;top:58%;left:17%;z-index: +1;"><font size="3" color="White"><i>Residuo Actual:</i></font></h2>
+<h3 id="demo2" style="color:rgb(0,114,250);left:30%;top:59%;position:absolute"> </h3>
+
+
+
+<!OJOS>
+  <img src="/static/planetas/astronomia.jpg" alt="Mountain View" style="height:40%;width:20%;left:16.5%;position:absolute;top:11%;z-index: +1;" >
+  <img src="/static/planetas/tierra.png" alt="Mountain View" style="height:20%;width:10%;left:74%;position:absolute;top:19%;" >
+<img src="/static/planetas/Jove.png" alt="Mountain View" style="height:10%;width:5%;left:76.5%;position:absolute;top:54%" >
+
+  
+
+  <div class="right-content">
+
+
+<!CUADRADO>
+<div style="left:17px;width:51.5%;height:56%;top:13%;border:4px solid rgb(0,114,250);color:rgb(0,114,250);position:absolute; z-index: -1;"> </div>
+<a class = tablero title="OBJETIVO DEL JUEGO: Moviendo las barras (parámetros físicos de tu sistema planetario), haz que tu modelo (curva de luz color naranjo) se aproxime lo más posible a tus datos reales (curva de luz con puntos celestes). El Residuo es tu indicador de qué tanto se parecen; haz que sea cero y genera tu mejor Residuo. Compáralo con el de tus amigos. ¡¡A JUGAR!!." style="position: absolute; left: 17%; top: 10.8%; z-index: +20;color:rgb(0,114,250);" ><font size="6"><i> Tablero de Juego </i></font></a>
+
+
+<!BARRAS>
+    <h3 style="position: absolute; left: 2.5%; top: 15%; z-index: +10;color:rgb(0,114,250);">
+        <label for="Rp";><i>Radio Exoplaneta</i> </label>
+        <input class=menu-bar type="range" min="0.0" max="25" value="1" step="0.1" id="Rp" style="width: 320px;color:rgb(0,114,250);">
+        <output for="Rp" id="radioP">1  </output>
+    </h3>
+
+
+    <h3 style="position: absolute; left: 45.5%; top: 15%; z-index: +10;color:rgb(0,114,250);" >R<sub>Terrestre</sub></h3>
+
+    <h3 style="position: absolute; left: 2.5%; top: 21%; z-index: +10;color:rgb(0,114,250);">
+        <label for="Re"><i>Radio Estrella</i> </label>
+        <input class=menu-bar type="range" min="0.001" max="10.0" value="1" id="Re" step="0.01" style="width: 330px;color:rgb(0,114,250);">
+        <output for="Re" id="radioE">1 </output>
+    </h3>
+
+
+    <h3 style="position: absolute; left: 45.5%; top: 21%; z-index: +1;color:rgb(0,114,250);"  > R<sub>Solares</sub></h3>
+
+    <h3 style="position: absolute; left: 2.5%; top: 27%; z-index: +10;color:rgb(0,114,250);">
+        <label for="a"><i>Distancia Orbital</i></label>
+        <input class=menu-bar type="range" min="0.001" max="2.0" value="1" id="a" step="0.0005" style="width: 300px;">
+        <output for="a" id="semiejea">1 </output>
+    </h3>
+
+    <h3 style="position: absolute; left: 45.5%; top: 27%; z-index: +10;color:rgb(0,114,250);" ><sub>UA</sub></h3>
+
+    <h3 style="position: absolute; left: 2.5%; top: 32.5%; z-index: +10;color:rgb(0,114,250);">
+        <label for="i"><i>Inclinación orbital</i></label>
+        <input class=menu-bar type="range" min="85" max="90" value="90" id="i" step="0.01" style="width: 300px;color:rgb(0,114,250);">
+        <output for="i" id="inclin">90°</output>
+    </h3>
+
+    <h3 style="position: absolute; left: 2.5%; top: 38%; z-index: +10;color:rgb(0,114,250);">
+        <label for="Pk";><i>Mover Tránsito</i></label>
+        <input class=menu-bar type="range" min="-0.3" max="0.3" value="0" step="0.0005" id="Pk" style="width: 350px;color:rgb(0,114,250);">
+        <output for="Pk" id="Peak"><sub>Izq.-Der.</sub>  </output>
+    </h3>
+
+</div>
+
+
+
+<!CHARTS>
+<div class="chart-container">
+  <div id="chart1" style="height:37.2%; width:45.5%;left:54%  ;position :absolute;top:12%;z-index: +1;"></div>
+  <!lateral>
+  <div id="lateral" style="height:28%;left:2.5%px; width:98.3%;top:75% ;position :absolute;z-index: +20"></div>
+  <!frontal>
+  <div class="boxed" id="frontal" style="height:45%; width:25%;left:31%;top:38% ;position :absolute"></div>
+  <div id="Residuos" style="height:24%; width:45.4%;left:54%  ;position :absolute;top:52%;z-index: +1;"></div>
+</div>
+
+
+<!Musica>
+<embed src="/static/The_Force_Theme.mp3" autostart="true" loop="true" hidden="true">
+
+
+<script type="text/javascript">
+
+var val_prevent = 0;
+var plot1;
+var tiempo = {{ x_json|default('[]') }};
+var flux = {{ y_json|default('[]') }};
+var flux_batman = {{ y_file|default('[]') }};
+var fbat_t = {{ fbat_t_json|default('[[1,0]]') }};
+var f_t =  {{ f_t_json|default('[[0,1]]') }};
+var Res =  {{ Res_jason|default('[[0,1]]') }};
+var x_values = '{{ x_json }}';
+var y_values = '{{ y_file }}';
+var Periodo = '{{ hola|default('365') }}';
+
+document.getElementById("P").value = Periodo;
+
+var Mejor_residuo=100;
+
+function prevent(val){
+  if (val==1){
+    val_prevent=1;
+   }
+  if(val_prevent==0){
+    window.alert('Debes pasar por el PASO 1 primero.\n¡Selecciona tu archivo (PASO 1), luego sube tu curva de luz (PASO 2) ¡y a Jugar!');
+  }
+  if(val ==2){
+    val_prevent=1;
+  }
+}
+
+
+
+
+
+
+    function updateData(_valor, _id){
+        $.ajax({
+          type: 'POST',
+          url: '/',
+          dataType: 'json',
+          data: {
+              formato : 'json',
+              radio_planeta : $('#radio_planeta').val(),
+              radio_estrella : $('#radio_estrella').val(),
+              distancia_orbital :  $('#distancia_orbital').val(),
+              mover_peak :  $('#mover_peak').val(),
+              inclinacion_orbital :  $('#inclinacion_orbital').val(),
+              x_values : x_values,
+              y_values : y_values,
+              Periodo : Periodo,
+            //  residuo_total:residuo_total
+          },
+            success: function (data) {
+              //document.getElementById("holi").value = "Johnny Bravo";
+                eval('tiempo = ' + data.x_json);
+                eval('flux = ' + data.y_json);
+                eval('flux_batman = ' + data.y_file);
+                eval('fbat_t = ' + data.fbat_t_json);
+                eval('f_t = ' + data.f_t_json);
+                eval('Res = ' + data.Res_jason);
+              //    eval('totalRes = ' + data.Restot);
+                x_values = data.x_json;
+                y_values = data.y_file;
+                Periodo = data.hola;
+
+                graf(_valor, _id);
+
+
+            }
+        });
+    }
+
+
+
+
+
+    //funcion que da el color a la estrella:
+     function colorstar(radio){
+       var color;
+       if (radio >0  && radio <0.6 ){
+         color = "#FF3300";
+       }
+
+       if (radio >=0  && radio <0.9 ){
+         color = "#FF6600";
+       }
+
+
+       else if (radio >=0.9  && radio <1.1 ){
+         color = "#FF9900";
+       }
+
+       else if (radio >=1.1  && radio <1.3 ){
+         color = "#FFCC00";
+       }
+
+       else if (radio >=1.3  && radio <2.1 ){
+         color = "#FFFF99";
+       }
+
+       else if (radio >2.1  && radio <7 ){
+         color = "#F8F8F8 ";
+       }
+
+       else if (radio >=7  && radio <12 ){
+         color = "#CCFFFF";
+       }
+
+       else if (radio >=12  && radio <14 ){
+         color = "#3399FF";
+       }
+
+
+       else if (radio >=14  && radio <15 ){
+         color = "#0099FF";
+       }
+
+       else{color= "#0066FF"}
+       return color;
+     }
+
+graf(1,"Rp");
+
+    //Funcion que grafica cada vez que se mueve una barra
+    $(document).ready(function () {
+
+
+
+        $('.right-content').on('change', '#Rp', function (event) {
+            _valor = $(this).val();
+            _id = $(this).attr('id');
+            $('#radio_planeta').val(_valor);
+            updateData(_valor, _id);
+            graf(_valor, _id);
+        });
+
+        $('.right-content').on('change', '#Pk', function (event) {
+            _valor = $(this).val();
+            _id = $(this).attr('id');
+            $('#mover_peak').val(_valor);
+            updateData(_valor, _id);
+            graf(_valor, _id);
+        });
+
+        $('.right-content').on('change', '#Re', function (event) {
+            _valor = $(this).val();
+            _id = $(this).attr('id');
+            $('#radio_estrella').val(_valor);
+            updateData(_valor, _id);
+            graf(_valor, _id);
+        });
+
+        $('.right-content').on('change', '#a', function (event) {
+            _valor = $(this).val();
+            _id = $(this).attr('id');
+            $('#distancia_orbital').val(_valor);
+            updateData(_valor, _id);
+            graf(_valor, _id);
+        });
+
+        $('.right-content').on('change', '#i', function (event) {
+            _valor = $(this).val();
+            _id = $(this).attr('id');
+            $('#inclinacion_orbital').val(_valor);
+            updateData(_valor, _id);
+            graf(_valor, _id);
+        });
+
+
+        //generateBubbleChart(bubbleArr1);
+
+    });
+
+ //para inicializar grafico bubble
+  var bubbleArr1 = [
+        [0, 0, 70000, {label:"", color:"Blue"}],
+        [1, 0, 6400, {label:"", color:"#B9751D"}]
+        ];
+
+    //Esto ajusta el tamaño del grafico bubbleRenderer
+
+
+  function generateBubbleChart(_arr1){
+        $('#lateral').html('');
+
+
+        var plot1 = $.jqplot('lateral', [_arr1], {
+                                                title: '',
+                                                seriesDefaults: {
+                                                                  renderer: $.jqplot.BubbleRenderer,
+                                                                  rendererOptions: {
+                                                                                    bubbleGradients: true,
+                                                                                    autoscaleBubbles: false,
+                                                                                    autoscaleMultiplier: true,
+                                                                                    },
+                                                                   showMarker: true,
+                                                                   shadow: false,
+                                                                 },
+                                                grid: {
+
+                                                                   background: 'rgba(57,57,57,0.0)',
+                                                                   drawGridLines: true,
+                                                                   drawBorder: false,
+                                                                   shadow: true,
+                                                                   gridLineColor: '#FFFFFF',
+                                                                   gridLineWidth: false,
+                                                                   //borderColor: '#999999',
+
+                                                      },
+
+                                                axes: {
+                                                                   xaxis: {
+                                                                                    min:-0.1,
+                                                                                    max:2,
+
+                                                                                    tickOptions: {
+                                                                                                  angle: -30,
+                                                                                                  mark: 'outside',
+                                                                                                  showMark: true,
+                                                                                                  showGridline: true,
+                                                                                                  textColor:'#FFFFFF',
+                                                                                                  },
+                                                                                    labelRenderer:$.jqplot.CanvasAxisLabelRenderer,
+                                                                                    textColor:'#FFFFFF',
+                                                                                    tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                                                                                    label: 'UA',
+                                                                                    labelOptions: {
+                                                                                                   fontFamily: 'georgia',
+                                                                                                   fontSize: '12pt'
+                                                                                                  },
+                                                                                    labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+                                                                            },
+                                                                    yaxis: {
+                                                                              show:false,
+                                                                              min:-2261*700,
+                                                                              max:2261*700,
+                                                                              renderer: $.jqplot.LogAxisRenderer,
+                                                                              tickOptions: {
+                                                                                            labelRenderer:$.jqplot.CanvasAxisLabelRenderer,
+                                                                                            textColor:'#FFFFFF',
+                                                                                            labelPosition: 'middle',
+                                                                                            angle: 0,
+                                                                                            showGridline: true,
+                                                                                            show:true,
+                                                                                            formatString: ''
+
+                                                                                            },
+                                                                              tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                                                                              labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                                                                              textColor:'White',
+                                                                              labelOptions: {
+                                                                                            fontFamily: 'georgia',
+                                                                                            fontSize: '12pt'
+                                                                                            },
+                                                                              label: 'Km'
+                                                                              }
+                                                          },
+
+
+                                  });
+
+
+    }
+
+    function generateBubbleChart3(_arr1){
+          $('#frontal').html('');
+          var plot1 = $.jqplot('frontal', [_arr1], {
+                  title: '',
+                  seriesDefaults: {
+                                    renderer: $.jqplot.BubbleRenderer,
+                                    rendererOptions: {
+                                                      bubbleGradients: true,
+                                                      autoscaleBubbles: true,
+
+                                                    },
+                                    showMarker: false,
+                                    shadow: false,
+                                  },
+                  grid: {
+                          drawGridLines: false,
+                          background: 'rgba(57,57,57,0.0)',
+                          drawBorder: false,
+                          shadow: false,
+                          gridLineColor: '#FFFFFF',
+                          gridLineWidth: false,
+                          borderColor: '#999999',
+
+                        },
+                axes: {
+                        xaxis: {
+                                min:-0.08,
+                                max:1.1,
+                                tickOptions: {
+                                              angle: -30,
+                                              labelRenderer:$.jqplot.CanvasAxisLabelRenderer,
+                                              textColor:'#FFFFFF',
+                                              show:false,
+
+
+                                             },
+                                labelRenderer:$.jqplot.CanvasAxisLabelRenderer,
+                                textColor:'#FFFFFF',
+                                tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                                label: '',
+                                labelOptions: {
+                                                fontFamily: 'georgia',
+                                                fontSize: '12pt',
+
+                                              },
+                                labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+                                },
+                        yaxis: {
+                                min:-15,
+                                max:15,
+                                renderer: $.jqplot.LogAxisRenderer,
+                                tickOptions: {
+                                              labelRenderer:$.jqplot.CanvasAxisLabelRenderer,
+                                              textColor:'#FFFFFF',
+                                              labelPosition: 'middle',
+                                              angle: 0,
+                                              show:false,
+                                              },
+                                tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                                labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                                textColor:'White',
+                                labelOptions: {
+                                              fontFamily: 'georgia',
+                                              fontSize: '12pt'
+                                              },
+                                label: ''
+                              }
+                    },
+         });
+    }
+
+    function graficar(data1, data2) {
+
+        $(document).ready(function () {
+
+
+            // Enable plugins like cursor and highlighter by default.
+            $.jqplot.config.enablePlugins = true;
+            // For these examples, don't show the to image button.
+            $.jqplot._noToImageButton = true;
+
+
+        var plot1 = $.jqplot('chart1', [data2, data1], {
+              title: '',
+
+
+
+              legend: {
+                       show: true,
+                       placement: 'inside'
+                      },
+                      grid: {
+                            background: '#3D3D5C',
+                          },
+
+          //  legend: {show: false},
+
+             axes: {
+                    xaxis: {
+
+                            show:false,
+                            pad: 1,
+                          //  numberTicks: 8,
+                            rendererOptions: {drawBaseline: false},
+
+                            tickOptions: {
+                                          angle: -20,
+                                          labelRenderer:$.jqplot.CanvasAxisLabelRenderer,
+                                          textColor:'#FFFFFF'
+
+                                          },
+                            labelRenderer:$.jqplot.CanvasAxisLabelRenderer,
+                            textColor:'#FFFFFF',
+                            tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                            label: '',
+                            labelOptions: {
+                                          fontFamily: 'georgia',
+                                          fontSize: '12pt'
+                                          },
+                            labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+                            },
+                yaxis: {
+                        renderer: $.jqplot.LogAxisRenderer,
+                        tickOptions: {
+                                      labelRenderer:$.jqplot.CanvasAxisLabelRenderer,
+                                      textColor:'#FFFFFF',
+                                      labelPosition: 'middle',
+                                      angle: 0
+                                     },
+                        tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                        labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                        textColor:'White',
+                        labelOptions: {
+                                      fontFamily: 'georgia',
+                                      fontSize: '12pt'
+                                      },
+                        label: 'LUZ  (Flujo normalizado)'
+                      }
+                },
+        series: [
+                  {
+                    showLine: false,
+                    showMarkers: true,
+                    markerOptions: {size: 5, },
+                    label:'Datos reales'
+                  },
+                  {
+                    lineWidth: 1,
+                    markerOptions: {size: 2, },
+                    label:'Modelo'
+                  },
+
+
+              ],
+
+        });
+
+
+    });
+  }
+  //termina funcio graficar
+
+
+
+
+    //Funcion que grafica el set de datos
+    function graficarRes(data) {
+
+          $('#Residuos').html('');
+
+        //  var str = 'hola como esras'
+        //  window.alert(str.length)
+
+          data2=[[data[0][0],0],[data[data.length-1][0],0]]
+          i=0;
+          largo = data.length;
+          sumaRes=0.0;
+          valor=0;
+          aux=0;
+
+          for(i=0;i<largo;i++){
+            valor = data[i][1];
+            if(valor<=0){
+              aux=-1;
+             }
+             else{
+              aux=1;
+             }
+             sumaRes = sumaRes + valor*aux;
+
+          }
+          if(sumaRes<Mejor_residuo){
+            Mejor_residuo=sumaRes;
+          }
+
+          sumaRes = sumaRes*100000;
+          sumaRes = Math.trunc(sumaRes);
+          sumaRes = sumaRes/100000.0;
+
+          Mejor_residuo = Mejor_residuo*100000;
+          Mejor_residuo = Math.trunc(Mejor_residuo);
+          Mejor_residuo = Mejor_residuo/100000.0;
+            //sumaRes = sumaRes.toFixed(4);
+            //Mejor_residuo = Mejor_residuo.toFixed(4);
+            if(sumaRes==1){
+              document.getElementById("demo").innerHTML = '-';
+              document.getElementById("demo2").innerHTML = '-';
+
+            }
+            if(sumaRes!=1){
+             document.getElementById("demo").innerHTML = Mejor_residuo;
+             document.getElementById("demo2").innerHTML = sumaRes;
+            }
+
+        var plot1 = $.jqplot('Residuos', [data,data2], {
+            title: '',
+
+            seriesDefaults: {
+                            rendererOptions: {
+                                              smooth: true
+                                              }
+                            },
+            //dataRenderer: conjdatos,
+           fillBetween: {
+              series1: 0,
+              //second series
+              series2: 1,
+              //fourth series
+              color: "rgba(10, 120, 130, 0.7)"
+            },
+
+            grid: {
+                  background: '#3D3D5C',
+                },
+            legend: {
+                     show: false,
+                     placement: 'inside'
+                    },
+
+            axes: {
+                xaxis: {
+                        pad: 1,
+                      //  numberTicks: 8,
+                        tickOptions: {
+                                      angle: -20,
+                                      labelRenderer:$.jqplot.CanvasAxisLabelRenderer,
+                                      textColor:'#FFFFFF'
+                                    },
+                    labelRenderer:$.jqplot.CanvasAxisLabelRenderer,
+                    textColor:'#FFFFFF',
+                    tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                    label: 'Tiempo (dd)',
+                    labelOptions: {
+                        fontFamily: 'georgia',
+                        fontSize: '12pt'
+                    },
+                    labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+                },
+                yaxis: {
+                        min:-0.02,
+                        max:0.02,
+                        renderer: $.jqplot.LogAxisRenderer,
+                        tickOptions: {
+                                      labelRenderer:$.jqplot.CanvasAxisLabelRenderer,
+                                      textColor:'#FFFFFF',
+                                      labelPosition: 'middle',
+                                      angle: 0
+                    },
+                    tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                    labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                    textColor:'White',
+                    labelOptions: {
+                        fontFamily: 'georgia',
+                        fontSize: '12pt'
+                    },
+                    label: 'Modelo- Dato real'
+                }
+            },
+
+
+            series: [
+                {
+                    // Change our line width and use a diamond shaped marker.
+                  //  fill: true,
+                    markerOptions: {size: 3},
+                    lineWidth: 1.5,
+
+                },
+                {
+                  label:' ',
+                  showLine: false,
+                  showMarkers: false,
+                  markerOptions: {size: 1, },
+
+                }
+
+
+            ]
+
+        });
+
+    }
+    //termina funcio graficarRes
+
+
+
+    function graf(valor, id) {
+
+    $('#chart1').html('');
+
+
+        var R_p = 1.;
+        var R_e = 1.;
+        var a = 1.;
+        var i = 90.;
+
+        //Alterando valor barritas y de cada variable
+        if (id == "Rp") {
+            R_p = valor;
+            document.querySelector('#radioP').value = R_p; // + " Radios Terrestres";
+
+        }
+        else if (id == "Re") {
+            R_e = valor;
+            document.querySelector('#radioE').value = R_e; // + " Radios Solares";
+
+        }
+        else if (id == "a") {
+            a = valor;
+            document.querySelector('#semiejea').value = valor ; //+ " UA";
+
+        }
+        else if (id == "i") {
+            i = valor;
+            document.querySelector('#inclin').value = valor + "°";
+
+        }
+        R_p = Number(document.getElementById("Rp").value)*6371.0;
+        R_e = Number(document.getElementById("Re").value)*696000.0;
+        a = Number(document.getElementById("a").value)* 149597870.700;
+        i = (Number(document.getElementById("i").value)*Math.PI)/180.0;
+
+
+        //----------------------------------------TRABAJO CON LAS VARIABLES PARA OBTENER LINEAS DE APROXIMACION---------------------
+
+
+        var UA = 150000000/5000;
+        var colors = colorstar(R_e/696000);
+        var c_d =5.0;
+        var c_i = 9.3;
+        var c_e = 8.7;
+        var razon1 = (R_p)/(R_e)
+        var razon2 = (a)/(R_e)
+
+
+        document.getElementById("R_p-R_e").value = razon1;
+        document.getElementById("a-R_e").value = razon2;
+        document.getElementById("in").value = i*(180.0/Math.PI);
+        //datos dinamicos para los dos graficos bubble
+        //LATERAL
+
+        if(a > (R_e+R_p)*c_e){
+        sistema1 = [
+           [0, 0 , R_e/UA, {label:"", color:colors}],
+           [a/(150000000)*(Math.cos(((Math.PI/2)-i)*c_i)) ,(a/(150000000))*(Math.sin( ((Math.PI/2)-  i)*c_i  ) )*16500000 , R_p/UA, {label:"", color:'#B9751D'}],
+           ];
+         }
+         if(a < (R_e+R_p)*c_e){
+         sistema1 = [
+            [0, 0 , R_e/UA, {label:"", color:colors}],
+            ];
+          }
+
+        //FRONTAL
+        if (R_e>R_p){
+
+           sistema2 = [
+              [(-0.08 +1.1)/2, 0, R_e, {label:"", color:colors}],
+              [(-0.08 +1.1)/2 , (a*(Math.sin( (Math.PI/2)-  i  ) )*c_d)/R_e, R_p, {label:"", color:'#B9751D'}],
+
+              ];
+         }
+         if (R_e<=R_p){
+         sistema2 = [
+              [(-0.08 +1.1)/2 , (a*(Math.sin( (Math.PI/2)-  i  ) )*c_d)/R_e, R_p, {label:"", color:'#B9751D'}],
+
+            ];
+          }
+
+          generateBubbleChart(sistema1);
+          generateBubbleChart3(sistema2);
+
+
+
+        //Destruyo el grafico anterior
+        if (plot1) {
+            plot1.destroy();
+        }
+
+        //Vuelvo a graficar
+
+        graficar(fbat_t, f_t);
+        graficarRes(Res);
+
+
+
+
+    }//Termina funcion graf
+
+
+</script>
+
+
+
+
+
+
+
+{% endblock %}
