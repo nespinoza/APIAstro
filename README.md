@@ -1,7 +1,8 @@
 APIAstro --- estudiando transitos exoplanetarios en la web
 ---------------------------------------------
 
-**Autor: Roy Van der Westhuizen (royvdw@uc.cl)
+**Autor: Roy Van der Westhuizen (royvdw@uc.cl)**
+
 **Colaboradores**: Juan Pablo Sepúlveda
 **Advisors**: Andres Jordan (andres.jordan@uai.cl); Nestor Espinoza (nespinoza@stsci.edu).
 
@@ -12,6 +13,8 @@ APIAstro es una aplicacion que permite ajustar transitos exoplanetarios "a mano"
 como las propiedades de un planeta impactan la curva de luz observada. Esta aplicacion fue desarrollada por 
 Roy Van der Westhuizen, en lo que fue su tesis de licenciatura. El estudio de su tesis se encuentra en este mismo 
 repositorio (`Tesis.pdf`).
+
+Este repositorio fue subido por Nestor Espinoza a peticion de Roy Van der Westhuizen.
 
 # Dependencias
 -----------------
